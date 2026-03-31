@@ -5,7 +5,19 @@ public class Product {
     private String name;
     private int quantity;
 
-    public Product(String sku,String name,int quantity){
+    public String getSku() {
+        return sku;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public Product(String sku, String name, int quantity){
         if(sku==null || sku.isBlank()){
             throw new IllegalArgumentException("SKU is required");
         }
@@ -21,8 +33,11 @@ public class Product {
     }
 
     public void decreaseQuantity(int amount){
-        if (amount>quantity || amount<=0){
+        if (amount>quantity ){
             throw new InsufficientStockException("Not enough stock");
+        }
+        if(amount<=0){
+            throw new IllegalArgumentException("amount should be positive");
         }
         this.quantity -= amount;
     }
@@ -33,15 +48,4 @@ public class Product {
         }
     }
 
-    public void setSku(String sku) {
-        this.sku = sku;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
 }
