@@ -32,20 +32,21 @@ public class Product {
         this.quantity=quantity;
     }
 
-    public void decreaseQuantity(int amount){
-        if (amount>quantity ){
-            throw new InsufficientStockException("Not enough stock");
+    public void decreaseQuantity(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be positive");
         }
-        if(amount<=0){
-            throw new IllegalArgumentException("amount should be positive");
+        if (amount > quantity) {
+            throw new InsufficientStockException("Not enough stock");
         }
         this.quantity -= amount;
     }
 
-    public void increaseQuantity(int amount){
-        if(amount > 0){
-            this.quantity += amount;
+    public void increaseQuantity(int amount) {
+        if (amount <= 0) {
+            throw new IllegalArgumentException("Amount must be positive");
         }
+        this.quantity += amount;
     }
 
 }
