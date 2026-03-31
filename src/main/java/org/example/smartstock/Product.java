@@ -7,13 +7,13 @@ public class Product {
 
     public Product(String sku,String name,int quantity){
         if(sku==null || sku.isBlank()){
-            throw new RuntimeException("SKU is required");
+            throw new IllegalArgumentException("SKU is required");
         }
         if(name==null || name.isBlank()){
-            throw new RuntimeException("Name is required");
+            throw new IllegalArgumentException("Name is required");
         }
         if(quantity<0){
-            throw new RuntimeException("Quantity cannot be negative");
+            throw new IllegalArgumentException("Quantity cannot be negative");
         }
         this.sku=sku;
         this.name=name;
@@ -21,34 +21,24 @@ public class Product {
     }
 
     public void decreaseQuantity(int amount){
-        if (amount>quantity){
-            throw new IllegalArgumentException("Not enough stock");
+        if (amount>quantity || amount<=0){
+            throw new InsufficientStockException("Not enough stock");
         }
         this.quantity -= amount;
     }
 
     public void increaseQuantity(int amount){
-        this.quantity += amount;
-    }
-
-    public String getSku() {
-        return sku;
+        if(amount > 0){
+            this.quantity += amount;
+        }
     }
 
     public void setSku(String sku) {
         this.sku = sku;
     }
 
-    public String getName() {
-        return name;
-    }
-
     public void setName(String name) {
         this.name = name;
-    }
-
-    public int getQuantity() {
-        return quantity;
     }
 
     public void setQuantity(int quantity) {
