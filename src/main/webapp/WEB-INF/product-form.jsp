@@ -1,21 +1,29 @@
-<%--
-  Created by IntelliJ IDEA.
-  User: hamza
-  Date: 2/4/2026
-  Time: 00:21
-  To change this template use File | Settings | File Templates.
---%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<!DOCTYPE html>
 <html>
 <head>
-    <title>Title</title>
+    <title>Create Product</title>
 </head>
 <body>
-    <form method="post" action="/products/new">
-        <input type="text" name="sku">
-        <input type="text" name="name">
-        <input type="number" name="quantity">
-        <button type="submit">Create</button>
-    </form>
+<h1>Create Product</h1>
+
+<form method="post" action="${pageContext.request.contextPath}/products/new">
+    <div>
+        <label for="sku">SKU</label>
+        <input type="text" id="sku" name="sku" required>
+    </div>
+
+    <div>
+        <label for="name">Name</label>
+        <input type="text" id="name" name="name" required>
+    </div>
+
+    <div>
+        <label for="quantity">Initial Quantity</label>
+        <input type="number" id="quantity" name="quantity" min="0" required>
+    </div>
+
+    <button type="submit">Create</button>
+</form>
 </body>
 </html>
