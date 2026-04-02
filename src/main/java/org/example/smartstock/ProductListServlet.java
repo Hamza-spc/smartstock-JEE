@@ -20,6 +20,7 @@ public class ProductListServlet extends HttpServlet {
 
     @Override
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.setAttribute("products",inventoryService.getAllProducts());
         request.getRequestDispatcher("/WEB-INF/product-list.jsp").forward(request,response);
     }
 }
