@@ -1,0 +1,25 @@
+package org.example.smartstock;
+
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+import java.io.IOException;
+
+@WebServlet("/products")
+public class ProductListServlet extends HttpServlet {
+
+    private InventoryService inventoryService;
+
+    @Override
+    public void init(){
+        ProductRepository productRepository = new InMemoryProductRepository();
+        inventoryService = new InventoryService(ApplicationStore.PRODUCT_REPOSITORY);    }
+
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        request.getRequestDispatcher("/WEB-INF/product-list.jsp").forward(request,response);
+    }
+}

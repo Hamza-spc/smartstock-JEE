@@ -1,6 +1,8 @@
 package org.example.smartstock;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class InMemoryProductRepository implements ProductRepository{
@@ -18,5 +20,10 @@ public class InMemoryProductRepository implements ProductRepository{
             throw new ProductNotFoundException("Product not found");
         }
         return product;
+    }
+
+    @Override
+    public List<Product> findAll(){
+        return new ArrayList<>(productBySku.values());
     }
 }

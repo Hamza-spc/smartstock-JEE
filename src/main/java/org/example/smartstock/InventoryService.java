@@ -1,5 +1,7 @@
 package org.example.smartstock;
 
+import java.util.List;
+
 public class InventoryService {
     private final ProductRepository productRepository;
 
@@ -24,5 +26,9 @@ public class InventoryService {
     public void removeStock(String sku,int amount){
         Product product = productRepository.findBySku(sku);
         product.decreaseQuantity(amount);
+    }
+
+    public List<Product> getAllProducts(){
+        return productRepository.findAll();
     }
 }

@@ -15,8 +15,7 @@ public class ProductCreateServlet extends HttpServlet {
     @Override
     public void init() {
         ProductRepository repository = new InMemoryProductRepository();
-        inventoryService = new InventoryService(repository);
-    }
+        inventoryService = new InventoryService(ApplicationStore.PRODUCT_REPOSITORY);    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
