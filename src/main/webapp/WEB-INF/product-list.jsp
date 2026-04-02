@@ -1,9 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="java.util.List" %>
-<%@ page import="org.example.smartstock.Product" %>
-<%
-    List<Product> products = (List<Product>) request.getAttribute("products");
-%>
+<%@ taglib prefix="c" uri="jakarta.tags.core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,11 +8,17 @@
 <body>
 <h1>Product List</h1>
 
-<a href="<%= request.getContextPath() %>/products/new">Create Product</a>
+<a href="${pageContext.request.contextPath}/products/new">Create Product</a>
 
-    <% if (products == null || products.isEmpty()) { %>
+<c:if test="${not empty flashMessage}">
+<p>${flashMessage}</p>
+</c:if>
+
+<c:if test="${empty products}">
 <p>No products found.</p>
-    <% } else { %>
+</c:if>
+
+<c:if test="${not empty products}">
 <table border="1">
     <thead>
     <tr>
@@ -26,15 +28,15 @@
     </tr>
     </thead>
     <tbody>
-        <% for (Product product : products) { %>
+    <c:forEach var="product" items="${products}">
     <tr>
-        <td><%= product.getSku() %></td>
-        <td><%= product.getName() %></td>
-        <td><%= product.getQuantity() %></td>
+        <td>${product.sku}</td>
+        <td>${product.name}</td>
+        <td>${product.quantity}</td>
     </tr>
-        <% } %>
+    </c:forEach>
     </tbody>
 </table>
-<% } %>
+</c:if>
 </body>
 </html>

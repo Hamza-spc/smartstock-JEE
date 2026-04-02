@@ -9,6 +9,6 @@
 </h1>
 <br/>
 <a href="${pageContext.request.contextPath}/products/new">create product page</a>
-<a href="${pageContext.request.contextPath}//products">product list page</a>
+<a href="${pageContext.request.contextPath}/products">product list page</a>
 </body>
 </html>

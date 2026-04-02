@@ -14,8 +14,8 @@ public class ProductCreateServlet extends HttpServlet {
 
     @Override
     public void init() {
-        ProductRepository repository = new InMemoryProductRepository();
-        inventoryService = new InventoryService(ApplicationStore.PRODUCT_REPOSITORY);    }
+        inventoryService = (InventoryService) getServletContext().getAttribute("inventoryService");
+    }
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -29,9 +29,7 @@ public class ProductCreateServlet extends HttpServlet {
         int quantity = Integer.parseInt(request.getParameter("quantity"));
 
         inventoryService.registerProduct(sku, name, quantity);
-        Product product = inventoryService.getProduct(sku);
-
-        request.setAttribute("product", product);
-        request.getRequestDispatcher("/WEB-INF/product-created.jsp").forward(request, response);
+        request.getSession().setAttribute("flashMessage", "Product " + sku + " created successfully.");
+        response.sendRedirect(request.getContextPath() + "/products");
     }
 }
