@@ -5,6 +5,7 @@
              version="3.2">
     <persistence-unit name="smartstock-pu" transaction-type="RESOURCE_LOCAL">
         <class>org.example.smartstock.domain.Product</class>
+        <class>org.example.smartstock.domain.StockMovement</class>
         <properties>
             <property name="jakarta.persistence.jdbc.driver" value="org.h2.Driver"/>
             <property name="jakarta.persistence.jdbc.url" value="jdbc:h2:~/smartstock;AUTO_SERVER=TRUE;MODE=LEGACY"/>
