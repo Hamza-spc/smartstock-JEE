@@ -1,5 +1,9 @@
 package org.example.smartstock;
 
+import org.example.smartstock.config.ConnectionFactory;
+import org.example.smartstock.config.DatabaseInitializer;
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.repository.JdbcProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

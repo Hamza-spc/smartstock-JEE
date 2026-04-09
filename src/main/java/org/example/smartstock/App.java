@@ -1,5 +1,10 @@
 package org.example.smartstock;
 
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.repository.InMemoryProductRepository;
+import org.example.smartstock.repository.ProductRepository;
+import org.example.smartstock.service.InventoryService;
+
 public class App {
     public static void main(String[] args){
        ProductRepository repository = new InMemoryProductRepository();

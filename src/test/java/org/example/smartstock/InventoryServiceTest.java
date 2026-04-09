@@ -1,5 +1,9 @@
 package org.example.smartstock;
 
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.repository.InMemoryProductRepository;
+import org.example.smartstock.repository.ProductRepository;
+import org.example.smartstock.service.InventoryService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

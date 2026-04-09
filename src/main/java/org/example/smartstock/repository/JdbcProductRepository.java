@@ -1,4 +1,8 @@
-package org.example.smartstock;
+package org.example.smartstock.repository;
+
+import org.example.smartstock.config.ConnectionFactory;
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.exception.ProductNotFoundException;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;

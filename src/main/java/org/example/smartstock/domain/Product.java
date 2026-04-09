@@ -1,4 +1,6 @@
-package org.example.smartstock;
+package org.example.smartstock.domain;
+
+import org.example.smartstock.exception.InsufficientStockException;
 
 public class Product {
     private String sku;

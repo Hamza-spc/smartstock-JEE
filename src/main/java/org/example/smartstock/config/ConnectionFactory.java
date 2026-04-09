@@ -1,4 +1,4 @@
-package org.example.smartstock;
+package org.example.smartstock.config;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

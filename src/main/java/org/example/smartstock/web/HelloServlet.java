@@ -1,4 +1,4 @@
-package org.example.smartstock;
+package org.example.smartstock.web;
 
 import java.io.*;
 

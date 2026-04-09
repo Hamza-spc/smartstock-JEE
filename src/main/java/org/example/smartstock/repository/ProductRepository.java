@@ -1,4 +1,6 @@
-package org.example.smartstock;
+package org.example.smartstock.repository;
+
+import org.example.smartstock.domain.Product;
 
 import java.util.List;
 

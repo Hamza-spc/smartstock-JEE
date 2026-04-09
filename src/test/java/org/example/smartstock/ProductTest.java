@@ -1,5 +1,7 @@
 package org.example.smartstock;
 
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.exception.InsufficientStockException;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;

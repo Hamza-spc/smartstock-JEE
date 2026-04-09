@@ -1,12 +1,15 @@
-package org.example.smartstock;
+package org.example.smartstock.repository;
+
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.exception.ProductNotFoundException;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class InMemoryProductRepository implements ProductRepository{
-    private final Map<String,Product> productBySku = new HashMap<>();
+public class InMemoryProductRepository implements ProductRepository {
+    private final Map<String, Product> productBySku = new HashMap<>();
 
     @Override
     public void save(Product product) {

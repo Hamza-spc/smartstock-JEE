@@ -1,5 +1,5 @@
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ page import="org.example.smartstock.Product" %>
+<%@ page import="org.example.smartstock.domain.Product" %>
 <%
     Product product = (Product) request.getAttribute("product");
 %>

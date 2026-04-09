@@ -1,5 +1,8 @@
 package org.example.smartstock;
 
+import org.example.smartstock.domain.Product;
+import org.example.smartstock.exception.ProductNotFoundException;
+import org.example.smartstock.repository.InMemoryProductRepository;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertSame;

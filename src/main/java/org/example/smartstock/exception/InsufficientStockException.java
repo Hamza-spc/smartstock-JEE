@@ -1,4 +1,4 @@
-package org.example.smartstock;
+package org.example.smartstock.exception;
 
 public class InsufficientStockException extends RuntimeException {
     public InsufficientStockException(String message) {

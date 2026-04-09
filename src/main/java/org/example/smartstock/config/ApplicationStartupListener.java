@@ -1,9 +1,12 @@
-package org.example.smartstock;
+package org.example.smartstock.config;
 
 import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
+import org.example.smartstock.repository.JdbcProductRepository;
+import org.example.smartstock.repository.ProductRepository;
+import org.example.smartstock.service.InventoryService;
 
 @WebListener
 public class ApplicationStartupListener implements ServletContextListener {
