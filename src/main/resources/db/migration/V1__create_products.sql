@@ -1,0 +1,6 @@
+CREATE TABLE products (
+    id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
+    sku VARCHAR(50) NOT NULL UNIQUE,
+    name VARCHAR(100) NOT NULL,
+    quantity INT NOT NULL CHECK (quantity >= 0)
+);

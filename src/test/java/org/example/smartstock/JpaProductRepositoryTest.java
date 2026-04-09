@@ -3,8 +3,8 @@ package org.example.smartstock;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import org.example.smartstock.config.ConnectionFactory;
-import org.example.smartstock.config.DatabaseInitializer;
 import org.example.smartstock.config.EntityManagerFactoryProvider;
+import org.example.smartstock.config.FlywayMigrationRunner;
 import org.example.smartstock.domain.Product;
 import org.example.smartstock.domain.StockMovement;
 import org.example.smartstock.domain.StockMovementType;
@@ -30,8 +30,8 @@ class JpaProductRepositoryTest {
     void setUp() {
         String testDbUrl = "jdbc:h2:mem:smartstock-jpa-test-" + UUID.randomUUID() + ";DB_CLOSE_DELAY=-1;MODE=LEGACY";
         ConnectionFactory connectionFactory = new ConnectionFactory(testDbUrl);
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer(connectionFactory);
-        databaseInitializer.initializeSchema();
+        FlywayMigrationRunner flywayMigrationRunner = new FlywayMigrationRunner(connectionFactory);
+        flywayMigrationRunner.migrate();
 
         EntityManagerFactoryProvider provider = new EntityManagerFactoryProvider();
         entityManagerFactory = provider.create(Map.of(

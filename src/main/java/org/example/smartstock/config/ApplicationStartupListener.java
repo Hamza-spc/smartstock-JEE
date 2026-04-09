@@ -13,8 +13,8 @@ public class ApplicationStartupListener implements ServletContextListener {
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         ConnectionFactory connectionFactory = new ConnectionFactory();
-        DatabaseInitializer databaseInitializer = new DatabaseInitializer(connectionFactory);
-        databaseInitializer.initializeSchema();
+        FlywayMigrationRunner flywayMigrationRunner = new FlywayMigrationRunner(connectionFactory);
+        flywayMigrationRunner.migrate();
         entityManagerFactory = new EntityManagerFactoryProvider().create();
 
         ServletContext servletContext = sce.getServletContext();

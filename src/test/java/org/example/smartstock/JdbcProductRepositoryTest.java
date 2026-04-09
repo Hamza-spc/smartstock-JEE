@@ -1,7 +1,7 @@
 package org.example.smartstock;
 
 import org.example.smartstock.config.ConnectionFactory;
-import org.example.smartstock.config.DatabaseInitializer;
+import org.example.smartstock.config.FlywayMigrationRunner;
 import org.example.smartstock.domain.Product;
 import org.example.smartstock.repository.JdbcProductRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -11,14 +11,13 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class JdbcProductRepositoryTest {
     private ConnectionFactory connectionFactory;
-    private DatabaseInitializer databaseInitializer;
     private JdbcProductRepository jdbcProductRepository;
 
     @BeforeEach
     void setUp() {
         connectionFactory = new ConnectionFactory("jdbc:h2:mem:smartstock-test;DB_CLOSE_DELAY=-1");
-        databaseInitializer = new DatabaseInitializer(connectionFactory);
-        databaseInitializer.initializeSchema();
+        FlywayMigrationRunner flywayMigrationRunner = new FlywayMigrationRunner(connectionFactory);
+        flywayMigrationRunner.migrate();
         jdbcProductRepository = new JdbcProductRepository(connectionFactory);
     }
 
