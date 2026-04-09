@@ -10,7 +10,11 @@ public class ApplicationStartupListener implements ServletContextListener {
 
     @Override
     public void contextInitialized(ServletContextEvent sce) {
-        ProductRepository productRepository = new InMemoryProductRepository();
+        ConnectionFactory connectionFactory = new ConnectionFactory();
+        DatabaseInitializer databaseInitializer = new DatabaseInitializer(connectionFactory);
+        databaseInitializer.initializeSchema();
+
+        ProductRepository productRepository = new JdbcProductRepository(connectionFactory);
         InventoryService inventoryService = new InventoryService(productRepository);
 
         ServletContext servletContext = sce.getServletContext();
