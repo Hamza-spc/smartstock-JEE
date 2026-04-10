@@ -8,6 +8,9 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.PositiveOrZero;
+import jakarta.validation.constraints.Size;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -22,12 +25,17 @@ public class Product {
     private Long id;
 
     @Column(nullable = false, unique = true, length = 50)
+    @NotBlank
+    @Size(max = 50)
     private String sku;
 
     @Column(nullable = false, length = 100)
+    @NotBlank
+    @Size(max = 100)
     private String name;
 
     @Column(nullable = false)
+    @PositiveOrZero
     private int quantity;
 
     @OneToMany(mappedBy = "product", fetch = FetchType.LAZY)

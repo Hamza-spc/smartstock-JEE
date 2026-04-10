@@ -1,15 +1,21 @@
 package org.example.smartstock.repository;
 
+import jakarta.enterprise.context.RequestScoped;
+import jakarta.inject.Inject;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
 
+import org.example.smartstock.config.JpaRepo;
 import org.example.smartstock.domain.Product;
 import org.example.smartstock.exception.ProductNotFoundException;
 
+@JpaRepo
+@RequestScoped
 public class JpaProductRepository implements ProductRepository {
     private final EntityManager entityManager;
 
+    @Inject
     public JpaProductRepository(EntityManager entityManager) {
         this.entityManager = entityManager;
     }

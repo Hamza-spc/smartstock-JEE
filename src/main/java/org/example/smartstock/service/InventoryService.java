@@ -1,14 +1,20 @@
 package org.example.smartstock.service;
 
+import jakarta.enterprise.context.ApplicationScoped;
+import jakarta.inject.Inject;
+
+import org.example.smartstock.config.JpaRepo;
 import org.example.smartstock.domain.Product;
 import org.example.smartstock.repository.ProductRepository;
 
 import java.util.List;
 
+@ApplicationScoped
 public class InventoryService {
     private final ProductRepository productRepository;
 
-    public InventoryService(ProductRepository productRepository) {
+    @Inject
+    public InventoryService(@JpaRepo ProductRepository productRepository) {
         this.productRepository = productRepository;
     }
 
