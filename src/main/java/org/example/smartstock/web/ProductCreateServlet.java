@@ -1,6 +1,5 @@
 package org.example.smartstock.web;
 
-import jakarta.persistence.EntityManager;
 import jakarta.inject.Inject;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -20,9 +19,6 @@ import java.util.Set;
 public class ProductCreateServlet extends HttpServlet {
     @Inject
     private InventoryService inventoryService;
-
-    @Inject
-    private EntityManager entityManager;
 
     @Inject
     private Validator validator;
@@ -47,19 +43,9 @@ public class ProductCreateServlet extends HttpServlet {
             return;
         }
 
-        try {
-            entityManager.getTransaction().begin();
-            inventoryService.registerProduct(productForm.getSku(), productForm.getName(), productForm.getQuantity());
-            entityManager.getTransaction().commit();
-
-            request.getSession().setAttribute("flashMessage", "Product " + productForm.getSku() + " created successfully.");
-            response.sendRedirect(request.getContextPath() + "/products");
-        } catch (RuntimeException e) {
-            if (entityManager.getTransaction().isActive()) {
-                entityManager.getTransaction().rollback();
-            }
-            throw e;
-        }
+        inventoryService.registerProduct(productForm.getSku(), productForm.getName(), productForm.getQuantity());
+        request.getSession().setAttribute("flashMessage", "Product " + productForm.getSku() + " created successfully.");
+        response.sendRedirect(request.getContextPath() + "/products");
     }
 
     private Integer parseQuantity(String rawQuantity) {
